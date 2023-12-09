@@ -1,25 +1,21 @@
 name: Continous Inegration
 
 on:
-    pull_request:
-      branches: main
+  pull_request:
+    branches: main
 
 jobs:
-    build:
+  build:
+    runs-on: ubuntu-latest
 
-        runs-on: ubuntu-latest
+    steps:
+    - name: Checkout NodeJs code
+      uses: actions/checkout@v2
 
-        steps:
-        - name: Checkout NodeJs code
-            uses: actions/checkout@v2
+    - name: Setup NodeJs env
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x'
 
-        - name: Setup NodeJs env
-            uses: actions/setup-node@v3
-            with:
-            node-version: '20.x'
-
-        - name: Install dependencies
-            run: npm i
-
-
-            
+    - name: Install dependencies
+      run: npm i
